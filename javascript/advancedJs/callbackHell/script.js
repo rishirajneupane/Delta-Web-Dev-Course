@@ -3,27 +3,45 @@ let h1 = document.querySelector("h1");
 function changeColor(color, delay) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
+      let num = Math.floor(Math.random() * 5) + 1;
+      if(num>3){
+        reject("Error occured bro")
+      }
       h1.style.color = color;
       resolve("color changed !");
     }, delay);
   });
 }
-changeColor("red", 1000)
-  .then(() => {
-    console.log("red color was applied");
-    return changeColor("orange", 1000);
-  })
-  .then(() => {
-    console.log("orange color was applied");
-    return changeColor("blue", 1000);
-  })
-  .then(() => {
-    console.log("blue color was applied");
-  })
 
-  .catch(() => {
-    console.log("Error occured !");
-  });
+async function demo() {
+  try {
+    await changeColor("red", 1000);
+    await changeColor("orange", 1000);
+    await changeColor("blue", 1000);
+    await changeColor("purple", 1000);
+  } catch (err) {
+    console.log("error occured  here");
+    console.log(err);
+  }
+  let a = 5;
+  console.log(a);
+}
+// changeColor("red", 1000)
+//   .then(() => {
+//     console.log("red color was applied");
+//     return changeColor("orange", 1000);
+//   })
+//   .then(() => {
+//     console.log("orange color was applied");
+//     return changeColor("blue", 1000);
+//   })
+//   .then(() => {
+//     console.log("blue color was applied");
+//   })
+
+//   .catch(() => {
+//     console.log("Error occured !");
+//   });
 
 // changeColor(
 //   "Apna College",
